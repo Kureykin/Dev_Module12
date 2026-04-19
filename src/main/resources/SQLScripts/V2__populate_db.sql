@@ -1,0 +1,27 @@
+INSERT INTO CLIENT (NAME) VALUES
+('James'),
+('Emily'),
+('Michael'),
+('Olivia'),
+('William'),
+('Sophia'),
+('Daniel'),
+('Charlotte'),
+('Henry'),
+('Grace');
+INSERT INTO PLANET (ID, NAME) VALUES ('ZEPH123', 'Zephyria'),
+('NOVA77', 'Novaris'),
+('XEN900', 'Xentara'),
+('LUM45A', 'Lumora'),
+('KRY2024', 'Krylon');
+INSERT INTO TICKET (CREATED_AT, CLIENT_ID, FROM_PLANET_ID, TO_PLANET_ID) VALUES
+(DATE '2020-01-01', 1, 'NOVA77', 'LUM45A'),
+(DATE '2021-02-14', 2, 'XEN900', 'ZEPH123'),
+(DATE '2019-03-23', 4, 'LUM45A', 'NOVA77'),
+(DATE '2022-05-05', 3, 'KRY2024', 'ZEPH123'),
+(DATE '2018-07-17', 7, 'LUM45A', 'KRY2024'),
+(DATE '2023-08-30', 9, 'XEN900', 'LUM45A'),
+(DATE '2024-10-25', 6, 'KRY2024','XEN900'),
+(DATE '2016-11-12', 5, 'ZEPH123', 'NOVA77'),
+(DATE '2025-12-31', 10, 'NOVA77', 'XEN900'),
+(DATE '2017-09-11', 8, 'ZEPH123', 'KRY2024')
