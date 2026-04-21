@@ -12,6 +12,10 @@ public class PlanetCrudServiceImp implements PlanetCrudService {
 
     private PlanetDaoService planetDaoService = new PlanetDaoServiceImp();
 
+    public PlanetCrudServiceImp(PlanetDaoService planetDaoService) {
+        this.planetDaoService = planetDaoService;
+    }
+
     public Planet read(String id) {
         return planetDaoService.read(id);
     }

@@ -6,7 +6,11 @@ import org.entity.Client;
 
 public class ClientCrudServiceImp implements ClientCrudService {
 
-    private ClientDaoService clientDaoService = new ClientDaoServiceImp();
+    private ClientDaoService clientDaoService;
+
+    public ClientCrudServiceImp(ClientDaoService clientDaoService) {
+        this.clientDaoService = clientDaoService;
+    }
 
     @Override
     public void add(Client client){

@@ -2,6 +2,8 @@ package org;
 
 import org.crud.ClientCrudServiceImp;
 import org.crud.PlanetCrudServiceImp;
+import org.dao.servic.ClientDaoServiceImp;
+import org.dao.servic.PlanetDaoServiceImp;
 import org.entity.Client;
 import org.entity.Planet;
 import org.flywaydb.core.Flyway;
@@ -24,11 +26,11 @@ public class Main {
         planet.setId("MARC1");
         planet.setName("Marc");
 
-        ClientCrudServiceImp clientCrudService = new ClientCrudServiceImp();
+        ClientCrudServiceImp clientCrudService = new ClientCrudServiceImp(new ClientDaoServiceImp());
 
         clientCrudService.add(client);
 
-        PlanetCrudServiceImp planetCrudService = new PlanetCrudServiceImp();
+        PlanetCrudServiceImp planetCrudService = new PlanetCrudServiceImp(new PlanetDaoServiceImp());
 
         planetCrudService.add(planet);
 
