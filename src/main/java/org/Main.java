@@ -1,7 +1,7 @@
 package org;
 
-import org.crud.ClientCrudService;
-import org.crud.PlanetCrudService;
+import org.crud.ClientCrudServiceImp;
+import org.crud.PlanetCrudServiceImp;
 import org.entity.Client;
 import org.entity.Planet;
 import org.flywaydb.core.Flyway;
@@ -24,15 +24,15 @@ public class Main {
         planet.setId("MARC1");
         planet.setName("Marc");
 
-        ClientCrudService clientCrudService = new ClientCrudService();
+        ClientCrudServiceImp clientCrudService = new ClientCrudServiceImp();
 
-        clientCrudService.addEntity(client);
+        clientCrudService.add(client);
 
-        PlanetCrudService planetCrudService = new PlanetCrudService();
+        PlanetCrudServiceImp planetCrudService = new PlanetCrudServiceImp();
 
-        //planetCrudService.addEntity(planet);
+        planetCrudService.add(planet);
 
-//        System.out.println(clientCrudService.readEntity(1L));
-       System.out.println(planetCrudService.readEntity("NOVA77"));
+        System.out.println(clientCrudService.read(1L));
+       System.out.println(planetCrudService.read("NOVA77"));
     }
 }

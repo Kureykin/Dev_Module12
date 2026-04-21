@@ -1,9 +1,8 @@
-package org.crud;
+package org.dao.servic;
 
 import org.entity.Planet;
 
-public interface PlanetCrudService {
-
+public interface PlanetDaoService {
     public Planet read(String id);
     public void add(Planet planet);
 }
