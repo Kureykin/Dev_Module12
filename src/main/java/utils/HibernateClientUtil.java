@@ -1,11 +1,8 @@
 package utils;
 
-import lombok.Getter;
+import org.entity.Planet;
+import org.entity.Ticket;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.entity.Client;
 
@@ -20,7 +17,9 @@ public class HibernateClientUtil {
     }
 
     HibernateClientUtil() {
-        sessionFactory = new Configuration().addAnnotatedClass(Client.class).buildSessionFactory();
+        sessionFactory = new Configuration().addAnnotatedClass(Client.class)
+                .addAnnotatedClass(Ticket.class).addAnnotatedClass(Planet.class)
+                .buildSessionFactory();
     }
 
     public SessionFactory getSessionFactory() {
