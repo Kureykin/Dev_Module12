@@ -4,7 +4,13 @@ import org.entity.Planet;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import utils.DatabaseConnection;
 import utils.HibernatePlanetUtil;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class PlanetDaoServiceImp implements PlanetDaoService{
 
@@ -12,12 +18,9 @@ public class PlanetDaoServiceImp implements PlanetDaoService{
     public Planet read(String id) {
 
         Planet planet = null;
-        try {
-            Session session = HibernatePlanetUtil.getInstance().getSessionFactory().openSession();
-
+        try(Session session = HibernatePlanetUtil.getInstance().getSessionFactory().openSession()) {
             planet = session.get(Planet.class, id);
 
-            session.close();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
         }
@@ -28,16 +31,18 @@ public class PlanetDaoServiceImp implements PlanetDaoService{
     @Override
     public void add(Planet planet) {
 
-        if(planet.getClass() != Planet.class){
-            throw new RuntimeException("False entity type");
-        }
+        Transaction transaction = null;
 
         try(Session session = HibernatePlanetUtil.getInstance().getSessionFactory().openSession();) {
-            Transaction transaction = session.beginTransaction();
+            transaction = session.beginTransaction();
             session.persist(planet);
             transaction.commit();
         } catch (Exception e) {
+            assert transaction != null;
+            transaction.rollback();
             throw new RuntimeException(e);
         }
     }
+
+
 }

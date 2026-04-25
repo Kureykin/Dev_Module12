@@ -1,21 +1,23 @@
 package org.dao.servic;
 
 import org.entity.Client;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import utils.DatabaseConnection;
 import utils.HibernateClientUtil;
+
 
 public class ClientDaoServiceImp implements ClientDaoService{
 
     @Override
     public Client read(long id) {
-        Session session = HibernateClientUtil.getInstance().getSessionFactory().openSession();
 
-        Client client = session.get(Client.class, id);
-
-        session.close();
-
-        return client;
+        try(Session session = HibernateClientUtil.getInstance().getSessionFactory().openSession()) {
+            return session.get(Client.class, id);
+        } catch (HibernateException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -25,8 +27,6 @@ public class ClientDaoServiceImp implements ClientDaoService{
         try (Session session = HibernateClientUtil.getInstance().getSessionFactory().openSession()){
 
             transaction = session.beginTransaction();
-            System.out.println("transaction: " + transaction.getClass().getName());
-            System.out.println("Status: " + transaction.getStatus());
 
             session.persist(client);
             transaction.commit();
@@ -39,4 +39,6 @@ public class ClientDaoServiceImp implements ClientDaoService{
             throw new RuntimeException(e.getMessage());
         }
     }
+
+
 }

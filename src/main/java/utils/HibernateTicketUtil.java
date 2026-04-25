@@ -4,23 +4,24 @@ import org.entity.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class HibernatePlanetUtil {
-    private static final HibernatePlanetUtil INSTANCE;
+public class HibernateTicketUtil {
+    private static final HibernateTicketUtil INSTANCE;
 
     private SessionFactory sessionFactory;
 
     static {
-        INSTANCE = new HibernatePlanetUtil();
+        INSTANCE = new HibernateTicketUtil();
     }
 
-    public static HibernatePlanetUtil getInstance() {
+    public static HibernateTicketUtil getInstance() {
         return INSTANCE;
     }
 
-    private HibernatePlanetUtil() {
-        sessionFactory = new Configuration().addAnnotatedClass(Planet.class)
-                .addAnnotatedClass(Ticket.class).addAnnotatedClass(Client.class)
+    private HibernateTicketUtil() {
+        sessionFactory = new Configuration().addAnnotatedClass(Ticket.class)
+                .addAnnotatedClass(Client.class).addAnnotatedClass(Planet.class)
                 .buildSessionFactory();
+
     }
 
     public SessionFactory getSessionFactory() {

@@ -2,6 +2,7 @@ package org.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Client")
@@ -15,6 +16,9 @@ public class Client {
 
     @Column(name = "name", length = 200)
     private String name;
+
+    @OneToMany(mappedBy = "clientId")
+    private Set<Ticket> ticket;
 
     public Client() {
 

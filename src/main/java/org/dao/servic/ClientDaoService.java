@@ -6,4 +6,5 @@ public interface ClientDaoService {
 
     public void add(Client client);
     public Client read(long id);
+
 }
